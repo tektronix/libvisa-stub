@@ -1,12 +1,21 @@
 cmake_minimum_required( VERSION 3.9 )
 
-project( 
+project(
 	visa
-	VERSION 0.0.0 
+	VERSION 0.0.0
 	DESCRIPTION "A stub library to build VISA applications against, no license required."
 )
 
-add_library( 
+set(OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/out)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/out)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/out)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/out)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/out)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/out)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/out)
+
+add_library(
 	${PROJECT_NAME}
 	SHARED
 	./stub.c
@@ -19,15 +28,15 @@ set_target_properties(
 )
 
 set_target_properties(
-	${PROJECT_NAME} 
+	${PROJECT_NAME}
 	PROPERTIES
-	PUBLIC_HEADER 
-	./visa.h 
+	PUBLIC_HEADER
+	./visa.h
 )
 
 set_target_properties(
-	${PROJECT_NAME} 
+	${PROJECT_NAME}
 	PROPERTIES
-	PUBLIC_HEADER 
+	PUBLIC_HEADER
 	./visatypes.h
 )

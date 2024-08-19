@@ -27,12 +27,6 @@ add_library(
 set_target_properties(
 	${PROJECT_NAME}
 	PROPERTIES
-	VERSION ${PROJECT_VERSION}
-)
-
-set_target_properties(
-	${PROJECT_NAME}
-	PROPERTIES
 	PUBLIC_HEADER
 	./visa.h
 )

@@ -5,6 +5,17 @@ project(
 	VERSION 0.0.0
 	DESCRIPTION "A stub library to build VISA applications against, no license required."
 )
+set(
+	lib_name
+	${PROJECT_NAME}
+)
+if (WIN32)
+	set(
+		lib_name
+		${lib_name}64
+	)
+
+endif (WIN32)
 
 set(OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/out)
 
@@ -19,20 +30,20 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/out)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/out)
 
 add_library(
-	${PROJECT_NAME}
+	${lib_name}
 	SHARED
 	./stub.c
 )
 
 set_target_properties(
-	${PROJECT_NAME}
+	${lib_name}
 	PROPERTIES
 	PUBLIC_HEADER
 	./visa.h
 )
 
 set_target_properties(
-	${PROJECT_NAME}
+	${lib_name}
 	PROPERTIES
 	PUBLIC_HEADER
 	./visatypes.h

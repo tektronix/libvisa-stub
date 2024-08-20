@@ -15,8 +15,14 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [ubuntu, windows, macos]
-    runs-on: ${{matrix.os}}-latest
+        include:
+          - os: ubuntu
+            runner: ubuntu-latest
+          - os: windows
+            runner: windows-latest
+          - os: macos
+            runner: macos-13
+    runs-on: ${{matrix.runner}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4

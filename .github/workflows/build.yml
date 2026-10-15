@@ -21,12 +21,22 @@ jobs:
           - os: windows
             runner: windows-latest
           - os: macos
-            runner: macos-13
+            runner: macos-latest
     runs-on: ${{matrix.runner}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Install Nix
+        if: matrix.os == 'ubuntu'
+        uses: DeterminateSystems/determinate-nix-action@v3.23.2
+      - name: Build (Nix, glibc 2.34)
+        if: matrix.os == 'ubuntu'
+        run: |
+          nix build -L
+          mkdir -p build/out
+          cp -L result/lib/* build/out/
       - name: Configure and Build
+        if: matrix.os != 'ubuntu'
         run: |
           mkdir build
           cd build
@@ -55,5 +65,3 @@ jobs:
           artifacts: artifacts/*
           generateReleaseNotes: true
           makeLatest: true
-
-
